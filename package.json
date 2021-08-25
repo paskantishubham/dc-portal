@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "set PORT=3011 && react-scripts start",
-    "build": "react-scripts build",
+    "build": "set PUBLIC_URL=v1.2beta/assets&& react-scripts build",
     "test": "nyc cross-env NODE_ENV=test jasmine",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "jshint": "jshint src/",
