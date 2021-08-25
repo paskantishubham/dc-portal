@@ -25,16 +25,7 @@ export default class NewEngagementRequest extends React.Component {
         rkoPWZP: { type: "STRING", value: "" },
         EQ1v55l: { type: "STRING", value: "" },
         MeOjkkJ: { type: "STRING", value: "" },
-        EMAIL_RECEIPT: { type: "STRING", value: "" },
-        /* CAPTCHA_KEY: {
-          type: "CAPTCHA_VALUE",
-          value: {
-            token:
-              "03AGdBq256exNCBcvW5PL-kO6oH2s8eok3BZoQGsv5wLY8VfQjVWkiEaV-cHhLCmr3ogwZlldA8IUMW1g3TvQdXCwGWH0Sf0h0JigHhSAV8FMfcFpno3592sshvyEUwuQWUcmPHoyi3Nyp_Z8w06rcZrAcuDYzc9llIyw5IFGF54y-3tVLsmSvpO51lqNvqJUVmCG7KRG6XWrH5wDJw4n49M1WjIZuhuA5cjD7uCAfuiexS0S6JQk3xjpJelyz6SoZTqfMsZ6Prj2YJqJW0GmYXXUFh8RjcbFVx427CNFwjvD-GYlhJXRERKJ_rCfn3vZPZyUFe0N3r2TTxpCHWv1aut-v-VBqQxpTBkT7VWM70ZquTkE8P-Pith2MXtNrlLgJTMOPO4O3flunlwBYBG9JWtxu8Lnyl7JwS6EMMfp5V7uMiLIkdWd0rtJhENX4IjXoemtwssfa_RPolltwE4lop7IBsEUPOfStFA",
-            siteKey: "6LfbDqAUAAAAAPc856qavjKSEVbYbOIj3lAb2x3l",
-            submitCaptchaTimeElapsed: 169,
-          },
-        }, */
+        EMAIL_RECEIPT: { type: "STRING", value: "" }
       },
       submissionToken: "",
       formDisplay: "block",
@@ -50,15 +41,18 @@ export default class NewEngagementRequest extends React.Component {
   }
 
   componentDidMount() {
-    var multipleCancelButton = new Choices("#choices-multiple-remove-button", {
-      removeItemButton: true,
-      maxItemCount: 10,
-      searchResultLimit: 5,
-      renderChoiceLimit: 10,
-      itemSelectText: "",
-      // placeholder: true,
-      // placeholderValue: "Select",
-    });
+    var multipleCancelButton = new window.Choices(
+      "#choices-multiple-remove-button",
+      {
+        removeItemButton: true,
+        maxItemCount: 10,
+        searchResultLimit: 5,
+        renderChoiceLimit: 10,
+        itemSelectText: "",
+        // placeholder: true,
+        // placeholderValue: "Select",
+      }
+    );
 
     var serviceNames = [];
 
@@ -84,7 +78,7 @@ export default class NewEngagementRequest extends React.Component {
     }); */
 
     // disable past dates
-    $(function () {
+    window.Jquery(function () {
       var dtToday = new Date();
 
       var month = dtToday.getMonth() + 1;
@@ -95,7 +89,7 @@ export default class NewEngagementRequest extends React.Component {
 
       var minDate = year + "-" + month + "-" + day;
 
-      $("#inputDate").attr("min", minDate);
+      window.Jquery("#inputDate").attr("min", minDate);
     });
   }
 
@@ -118,25 +112,13 @@ export default class NewEngagementRequest extends React.Component {
     currentFormData[name].value =
       valueOptions.length > 0 ? valueOptions : value;
 
-    console.log(
-      "Name: ",
-      name + "..." + "Value: ",
-      value + "...",
-      "Options: ",
-      valueOptions
-    );
-
     this.setState({
       formData: currentFormData,
     });
-
-    console.log("Form-Data: ", this.state.formData);
   }
 
   handleEmailCheckbox(event) {
     const target = event.target;
-
-    console.log("checked: ", target.checked);
 
     if (target.checked) {
       this.setState({
@@ -220,7 +202,6 @@ export default class NewEngagementRequest extends React.Component {
       this.setState({
         formSuccessMsg: "Successful",
       });
-      console.log("Successful Post: ", response);
     });
   }
 
@@ -230,12 +211,6 @@ export default class NewEngagementRequest extends React.Component {
     return (
       <Fragment>
         <div className="container-lg w-100 p-3 borderStyle">
-          {/* <iframe
-            src="https://app.smartsheet.com/b/form/74f7e5c706d04aca841df70661a5631b"
-            title="SmartSheet for New Engagement Request"
-            style={{ height: "75vh", width: "100%" }}
-          ></iframe> */}
-          {/* <div className="titles text-center">NEW ENGAGEMENT REQUEST</div>   */}
           <div
             className="container post-submit-msg text-center"
             style={{ display: this.state.formMsgDisplay }}

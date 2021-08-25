@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: uitest
       id: uitest
-      run: npm install && npm test && npm run build && tree webui-assets
+      run: npm install && npm test && npm run build && tree build
     - name: Push Build Artifacts
       if: github.event_name == 'push'
       uses: ec-release/github-action-copy-files-folders-to-another-repos@main
@@ -30,7 +30,7 @@ jobs:
         GIT_USEREMAIL: ${{ secrets.DC_GITHUB_EMAIL }}
         GIT_USERNAME: ${{ secrets.DC_GITHUB_USER }}
       with:
-        SOURCE_DIR: 'webui-assets'
+        SOURCE_DIR: 'build'
         DESTINATION_REPOS_BRANCHES: 'github.com/dc-release/dc-portal.git:disty'
         COMMIT_MESSAGE: 'DC Bot Deployment'
     - name: prmerged
