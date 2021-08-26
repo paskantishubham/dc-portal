@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "DC-Portal UI based on Bootstrap and REACT",
   "private": true,
+  "homepage": "v1.2beta/assets",
   "scripts": {
     "start": "set PORT=3011 && react-scripts start",
-    "build": "set PUBLIC_URL=v1.2beta/assets&& react-scripts build",
+    "build": "react-scripts build",
     "test": "nyc cross-env NODE_ENV=test jasmine",
     "coverage": "nyc --reporter=lcov --reporter=text-lcov npm test",
     "jshint": "jshint src/",
